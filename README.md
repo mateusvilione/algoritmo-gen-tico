@@ -219,4 +219,4 @@ void imprimeFitness()
 
     }
 }
-```# algoritmo-genetico
+```
