@@ -2,7 +2,7 @@
 
 > ### Exercício 6.1 Otimização de parâmetros de uma caixa preta [Computação Evolutiva: Uma Abordagem Pragmática - Fernando J. Von Zuben]
 
-[Computação Evolutiva: Uma Abordagem Pragmática - Fernando J. Von Zuben]: https://preview.c9users.io/mateusvilione/algoritmo-genetico/computacao-evolutiva-uma-abordagem-pragmatica.pdf?_c9_id=livepreview1&_c9_host=https://ide.c9.io
+[Computação Evolutiva: Uma Abordagem Pragmática - Fernando J. Von Zuben]: https://github.com/mateusvilione/algoritmo-genetico/blob/master/computacao-evolutiva-uma-abordagem-pragmatica.pdf
 
 
 #### Parâmetros do algoritmo
@@ -88,18 +88,19 @@ void avaliaPop()
 }
 ```
 #### Torneio
+
 ``` cpp
 void torneio()
 {
     int k=10;
     int maior=0;
     srand(time(NULL));
-    for(int i=0; i<TAM; i++)
+    for(int i=0; i<TAM; i++) //percorrer o tamanho da população = 20
     {
         int idx;
-        for(int j=0; j<k; j++)
+        for(int j=0; j<k; j++) 
         {
-            idx=rand()%(TAM);
+            idx=rand()%(TAM); // pega um individuo aleatóriamente
             if(j==0)
             {
                 maior=idx;
@@ -113,7 +114,7 @@ void torneio()
             }
             for(int l=0; l<COMP; l++)
             {
-                pop_temp[i][l] = pop[maior][l];
+                pop_temp[i][l] = pop[maior][l]; // salva o individuo escolhido para a próxima geração
             }
         }
     }
@@ -127,10 +128,10 @@ void crossover()
     srand(time(NULL));
     for(int i=0; i<TAM; i+=2)
     {
-        prob=rand()%101;
+        prob=rand()%101; // probabilidade de crossover
         if(prob<PC)
         {
-            corte=rand () % COMP;
+            corte=rand () % COMP; // ponto de corte
             if (corte==0)
             {
                 corte=1;
@@ -139,12 +140,12 @@ void crossover()
             {
                 corte=COMP-1;
             }
-            for (int x=0; x < corte; x++)
+            for (int x=0; x < corte; x++) //troca as caracteristicas até o ponto de corte
             {
                 pop[i][x]= pop_temp[i][x];
                 pop[i+1][x]= pop_temp[i+1][x];
             }
-            for (int y=corte; y < COMP; y++)
+            for (int y=corte; y < COMP; y++) //troca as caracteristicas depois do ponto de corte
             {
                 pop[i][y]= pop_temp[i+1][y];
                 pop[i+1][y]= pop_temp[i][y];
@@ -167,7 +168,7 @@ void mutacao()
 {
     int prob;
     srand(time(NULL));
-    for(int i=0; i<TAM; i++)
+    for(int i=0; i<TAM; i++) // probabilidade de mudar as caracteristicas de cada celula da matriz
     {
         for(int j=0; j<COMP; j++)
         {
@@ -176,11 +177,11 @@ void mutacao()
             {
                 if(pop[i][j]== 0)
                 {
-                    pop[i][j]=1;
+                    pop[i][j]=1; // troca de 0 pra 1
                 }
                 else
                 {
-                    pop[i][j]=0;
+                    pop[i][j]=0; // troca de 1 pra 0
                 }
             }
         }
@@ -195,7 +196,7 @@ void imprimePop()
     {
         for(int j=0; j<COMP; j++)
         {
-            cout << pop[i][j];
+            cout << pop[i][j]; //imprime todos os individuos
         }
         cout << "\n";
     }
@@ -207,7 +208,7 @@ void imprimeFitness()
 {
     for(int i = 0; i< TAM; i++)
     {
-        cout<<fitInd[i];
+        cout<<fitInd[i]; // imprime o Fitness de cada individuo
         if(i==TAM-1)
         {
             cout<<"."<<endl;

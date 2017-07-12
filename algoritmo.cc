@@ -127,13 +127,13 @@ void crossover()
             }
             for (int x=0; x < corte; x++)
             {
-                pop[i][x]= pop_temp[i][x];
-                pop[i+1][x]= pop_temp[i+1][x];
+                pop[i][x]   = pop_temp[i][x];
+                pop[i+1][x] = pop_temp[i+1][x];
             }
             for (int y=corte; y < COMP; y++)
             {
-                pop[i][y]= pop_temp[i+1][y];
-                pop[i+1][y]= pop_temp[i][y];
+                pop[i][y]   = pop_temp[i+1][y];
+                pop[i+1][y] = pop_temp[i][y];
             }
         }
         else
